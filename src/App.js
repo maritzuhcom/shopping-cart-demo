@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
+import CardCollection from './components/CardCollection';
 import './App.css';
 
 const App = () => (
   <FlexContainer className="App">
     <Header />
+    <CardCollection />
   </FlexContainer>
 );
 
