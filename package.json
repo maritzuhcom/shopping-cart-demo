@@ -2,6 +2,7 @@
   "name": "shopping-cart-demo",
   "version": "0.1.0",
   "private": false,
+  "homepage" : "https://maritzuhcom.github.io/shopping-cart-demo/",
   "dependencies": {
     "babel-eslint": "^8.2.1",
     "gh-pages": "^1.1.0",
