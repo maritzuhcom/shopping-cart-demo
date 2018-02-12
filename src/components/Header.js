@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
+import { openModal } from '../actions/modals';
+
 class Header extends Component {
+  static defaultProps = {
+    count: 0,
+    dispatchOpenModal: () => {},
+  }
+
+  static propTypes = {
+    count: PropTypes.number,
+    dispatchOpenModal: PropTypes.func,
+  }
+
   cartHandler = () => {
-    console.log('it works!');
+    this.props.dispatchOpenModal();
   }
 
   render() {
@@ -42,7 +57,7 @@ class Header extends Component {
             </Text>
           </Hover>
           <CartCount>
-            0
+            {this.props.count}
           </CartCount>
         </FlexRow>
       </ShoppingHeader>
@@ -95,4 +110,12 @@ const CartCount = styled.div`
   line-height: 1em;
 `;
 
-export default Header;
+const mapStateToProps = state => ({
+  count: state.cart.itemCount,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  dispatchOpenModal: openModal,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

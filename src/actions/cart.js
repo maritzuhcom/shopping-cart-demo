@@ -6,7 +6,10 @@ export const addItem = itemData => ({
   payload: itemData,
 });
 
-export const removeItem = id => ({
+export const removeItem = (key, price) => ({
   type: REMOVE_ITEM,
-  payload: id,
+  payload: {
+    key,
+    price,
+  },
 });

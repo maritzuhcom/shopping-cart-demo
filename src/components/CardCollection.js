@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
 import { getItems } from '../actions/items';
+import { addItem } from '../actions/cart';
 
 import Card from './Card';
 
@@ -12,11 +13,13 @@ class FeaturedCollection extends Component {
   static propTypes = {
     products: PropTypes.array,
     dispatchGetItems: PropTypes.func,
+    dispatchAddItem: PropTypes.func,
   }
 
   static defaultProps = {
     products: [],
     dispatchGetItems: () => {},
+    dispatchAddItem: () => {},
   }
 
   componentWillMount() {
@@ -24,7 +27,7 @@ class FeaturedCollection extends Component {
   }
 
   clickHandler = (data) => {
-    console.log(data);
+    this.props.dispatchAddItem(data);
   }
 
   render() {
@@ -83,6 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   dispatchGetItems: getItems,
+  dispatchAddItem: addItem,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedCollection);
